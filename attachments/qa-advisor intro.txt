@@ -1,0 +1,15 @@
+RAG:
+
+RETRIEVAL -> relates to  process of retrieving input related data from vector db.
+AUGMENTED-> relates to model's knowledge that is augmented by retrieved data (context).
+GENERATION-> related to NL model that utilizes both input and retrieved context to provide a factual final answer. 
+
+
+When loading context model is unaware of there are two main approaches:
+
+- we can either use qaAdvisor that performs a similarity search over 
+vector db, then appends result to prompt 
+(we can also tune qaAdvisor promptTemplate ),
+then use chatClient Builder with .prompt() and .advisors()
+ 
+- or work with plain objects: load relevant data from vector db using vectorStore.similaritySearch, then put result as context of system message. then just chatClient.call(prompt);
